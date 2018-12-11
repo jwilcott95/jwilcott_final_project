@@ -1,0 +1,224 @@
+John Wilcott
+Final project
+
+Problem statement:
+	I want to make a text adventure game with a sci fi theme. In the game you will make decisions 
+on what to do next in the story which will ultimately lead up to a boss fight, and you will also collect
+inventory items. There will be automatic loss conditions, and generally bad choices that you can make.
+It will be integrated into the browser with one input form that takes in simple commands that will be told to the user.
+
+Nouns: text adventure game, decisions, story, boss fight, inventory items, auto loss, bad choices, browser, simple commands.
+
+Verbs: make decisions, collect inventory items, input form takes in simple commands, told to user
+
+
+
+
+
+Defining diagram:
+Variables:  hp, inventory[], bosshp, output message, input1
+
+Processing:
+
+Display story message
+Take user input
+Decide which message to show user based on input
+For boss fight calculate damage to you and the boss based on input
+Decide which message to show user based on ending outcome
+
+Output:
+
+Display story messages
+Display results of boss fight at the end
+
+
+
+
+
+Psuedocode:
+MyTextGame
+  initialize inventory to []
+  initialize hp to 1
+  initialize input1 to ""
+  initialize outputMessage to ""
+
+yourRoom
+  create form to put messages and prompts in window
+  get the form from the page for input
+  convert form input to string
+  
+  prevent browser from reloading
+
+  IF input1 = 'y' THEN
+    display opening phone message
+    call roomSearch
+    ELSE IF input = 'n' THEN
+      display another message
+      ELSE
+        display error message
+  ENDIF
+
+  put message in output area
+  
+roomSearch
+  create form to put messages and prompts in window
+  get the form from the page for input
+  convert form input to string
+  
+  prevent browser from reloading
+  
+  IF input1 = 'y' THEN
+    display search message
+    add 'armor' to inventory array
+    hp = hp + 1000
+    call shop
+    ELSE IF input = 'n' THEN
+      display no time message
+      call area51
+      ELSE
+        display error message
+  ENDIF
+  
+  put message in output area
+
+shop
+  create form to put messages and prompts in window
+  get the form from the page for input
+  convert form input to string
+  
+  prevent browser from reloading
+  
+  IF input1 = 'y' THEN
+    display shop message
+    call shop2
+    ELSEIF input = 'n'
+      display no time message
+      call area51
+      ELSE
+        display error message
+  ENDIF
+  
+  put message in output area
+  
+shop2
+  create form to put messages and prompts in window
+  get the form from the page for input
+  convert form input to string
+  
+  set input1 to ""
+  
+  prevent browser from reloading
+  
+  IF input1 - 'jeebs'
+    display welcome message
+    add 'raygun' to inventory array
+    hp = hp + 500
+    call area51
+    ELSE 
+      display rejection message
+      call area51
+  ENDIF
+  
+  put message in output area
+  
+area51
+  create form to put messages and prompts in window
+  get the form from the page for input
+  convert form input to string
+  
+  prevent browser from reloading
+  
+  IF input1 = 'y'
+    display martian ship message
+    call finalBoss
+    ELSE
+     display no choice message
+     call finalBoss
+  ENDIF
+  
+  put message in output area
+   
+finalBoss
+  create form to put messages and prompts in window
+  get the form from the page for input
+  convert form input to string
+  
+  prevent browser from reloading
+  
+  initialize bossHP to 500
+  
+  IF inventory[1] = 'raygun' THEN
+    WHILE hp > 0 OR bossHP > 0
+      IF input1 = 'attack' THEN
+        bosshp = bossHP - 100
+        hp = hp - 500
+        set input1 to ""
+        output attack message
+        loop break
+        ELSE IF input1 = 'defend' THEN
+          hp = hp + 500
+          set input to ""
+          output defense message
+          loop break
+          ELSE
+            display error message
+            hp = hp - 500
+            loop break
+          ENDIF
+    ENDWHILE
+    ELSE
+      display game over message
+  ENDIF
+  
+  IF bosshp <= 0 display victory message
+    ELSEIF hp <= 0 display game over message
+    
+  put message in output area
+  
+call yourRoom
+
+
+
+
+Test Scenarios
+Variables: input1
+
+TEST CASE 1:
+
+Input values: y,y,y,jeebs,y,atk,def,atk,def,atk,def,atk,def,atk
+
+Expected results:Victory message
+
+Actual results:Victory message
+
+TEST CASE 2:
+
+Input values: n,y,n,y,def
+
+Expected results:Unprepared defeat message
+
+Actual result: Unprepared defeat message
+
+TEST CASE 3: y,y,y,n,y,atk
+
+Expected results:Unprepared defeat message
+
+Actual results:Unprepared defeat message
+
+TEST CASE 4: 1, y, 2, y, 3, y, jeebs, 6, atk, atk
+
+Expected results: alot of try again messages, and a game over message
+
+Actual results:  alot of try again messages, and a game over message
+
+
+
+
+
+
+
+
+
+
+
+
